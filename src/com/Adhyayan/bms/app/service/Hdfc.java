@@ -1,20 +1,22 @@
 package com.Adhyayan.bms.app.service;
-
 import java.util.Scanner;
 
 import com.Adhyayan.bms.app.model.Account;
 
-public class Hdfc implements Rbi {
+public class Hdfc  implements Rbi{
 	Account a=new Account();
 	Scanner sc=new Scanner(System.in);
 	
 	
 	public void createAccount()
 	{
+		try
+		{
 		System.out.println("Enter the account number");
 		a.setAccNo(sc.nextInt());
 		System.out.println("Enter the Account holder name");
-		a.setName(sc.next());
+		sc.next();
+		a.setName(sc.nextLine());
 		System.out.println("Enter mobile number");
 		a.setMobNo(sc.nextLong());
 		System.out.println("Enter adhaar number");
@@ -27,6 +29,10 @@ public class Hdfc implements Rbi {
 		a.setBalance(sc.nextDouble());
 		System.out.println("Account created successfully");
 		System.out.println("--------------------------------------------");
+		}catch(Exception  e)
+		{
+			System.out.println("Enter correct input");
+		}
 		
 	}@Override
 	public void displayAllDetails()
@@ -53,7 +59,7 @@ public class Hdfc implements Rbi {
 	}
 	public void withdrawal()
 	{
-		System.out.println("Enter ammount you want to withdraw");
+		System.out.println("Enter amount you want to withdraw");
 		double amt=sc.nextDouble();
 		double oldAmt=a.getBalance();
 		a.setBalance(oldAmt-amt);
@@ -83,5 +89,6 @@ public class Hdfc implements Rbi {
 		a.setBalance(0.0);
 		System.out.println("account deleted successfully");
 	}
+
 
 }
